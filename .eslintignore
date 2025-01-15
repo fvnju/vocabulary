@@ -4,6 +4,7 @@
 .vscode/settings.json
 .history
 .yarn
+tailwind.config.js
 bazel-*
 bazel-bin
 bazel-out

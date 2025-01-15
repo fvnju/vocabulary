@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  overscroll-behavior: none;
+}
+
+.shadowed {
+  box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.07);
+  -webkit-box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.07);
+  -moz-box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.07);
+}
+
+.shadoweder {
+  box-shadow: 0px 0px 0px 1000vw rgba(0, 0, 0, 0.47);
+  -webkit-box-shadow: 0px 0px 0px 1000vw rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 0px 0px 0px 1000vw rgba(0, 0, 0, 0.47);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+#myPopover {
+  -webkit-animation: slide-out-bottom 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    both;
+  animation: slide-out-bottom 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+
+  &:popover-open {
+    -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      both;
+    animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+}
+
+@-webkit-keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes slide-out-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+}
+
+#myPopover {
+  transition:
+    display 0.5s allow-discrete,
+    overlay 0.5s allow-discrete;
+}
+
+@supports not (transition-behavior: allow-discrete) {
+  #myPopover {
+    &::after {
+      position: fixed;
+      left: 50%;
+      translate: -50% 0;
+      text-align: center;
+      font-size: 0.75em;
+      bottom: 0;
+      padding: 1em;
+      background-color: orangered;
+      color: white;
+      max-width: 450px;
+      content: "The demo may not work as expected, as the allow-discrete transition-behavior is not yet supported by your browser.";
+    }
+  }
+}
